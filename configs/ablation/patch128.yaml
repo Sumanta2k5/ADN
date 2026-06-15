@@ -1,0 +1,5 @@
+__base__: ../adn_x2.yaml
+name: ablation_patch128
+# Ablation: training patch size (Sec. IV-B.2).
+data:
+  patch_size: 128

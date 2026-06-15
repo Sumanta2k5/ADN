@@ -1,0 +1,5 @@
+__base__: ../adn_x2.yaml
+name: ablation_wo_resnet
+# Ablation: replace residual blocks with plain convs (Table V: "w/o ResNet blocks").
+model:
+  use_resnet: false

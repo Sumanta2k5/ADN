@@ -1,0 +1,34 @@
+# Byte-compiled / caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Experiment artifacts
+experiments/
+results/
+runs/
+*.log
+*.pth
+*.tar
+*.ckpt
+wandb/
+
+# Datasets (downloaded / prepared)
+datasets/
+data/raw/
+data/processed/
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db

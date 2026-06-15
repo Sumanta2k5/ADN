@@ -1,0 +1,5 @@
+__base__: ../adn_x2.yaml
+name: ablation_wo_cbam
+# Ablation: remove CBAM/ARM (Table V: "w/o CBAM").
+model:
+  use_cbam: false

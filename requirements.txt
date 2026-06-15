@@ -1,0 +1,22 @@
+# Core
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.23
+Pillow>=9.0
+pyyaml>=6.0
+tqdm>=4.64
+scipy>=1.9
+
+# Logging / experiment tracking
+tensorboard>=2.11
+
+# Metrics (optional but recommended)
+pyiqa>=0.1.7        # NIQE, LPIPS (optional; gracefully skipped if absent)
+opencv-python>=4.6  # used by dataset preparation / MATLAB-bicubic fallback
+
+# Visualization / tables
+matplotlib>=3.6
+pandas>=1.5
+
+# Dev
+pytest>=7.0

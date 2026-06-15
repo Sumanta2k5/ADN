@@ -1,0 +1,5 @@
+__base__: base.yaml
+name: adn_x2
+scale: 2
+data:
+  patch_size: 192

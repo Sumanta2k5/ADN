@@ -1,0 +1,5 @@
+__base__: ../adn_x2.yaml
+name: ablation_kdepth3
+# Ablation: shallow kernel-generation trunk (kernel depth).
+model:
+  kernel_depth: 3

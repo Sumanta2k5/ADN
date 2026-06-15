@@ -1,0 +1,71 @@
+# Base configuration for ADN. Child configs inherit via __base__.
+name: adn_base
+output_dir: experiments
+seed: 42
+deterministic: false
+scale: 2
+
+model:
+  in_channels: 3
+  channels: 64
+  kernel_size: 3            # m == n (paper unspecified; SOTA default)
+  feature_downscale: 8      # latent map at H/8 (paper)
+  num_feature_blocks: 8
+  kernel_depth: 5           # residual blocks in KGM trunk (ablated)
+  offset_depth: 3
+  cbam_reduction: 16
+  spatial_kernel: 7         # 7x7 spatial-attention conv (paper)
+  offset_scale: 1.0
+  kernel_temperature: 1.0
+  res_scale: 1.0
+  use_cbam: true
+  use_resnet: true
+  arm_residual: true
+  paper_centering: false    # false => symmetric (k-1)/2 centering (recommended)
+  padding_mode: border
+  reconstructor: bicubic    # 'bicubic' (paper) or 'edsr' for joint SR training
+  recon_kwargs: {}
+
+loss:
+  lambda_mse: 0.55          # paper Eq. (4)
+  lambda_ssim: 0.45
+  lambda_guidance: 0.0      # SOTA-practice LR regularizer (off => faithful)
+  lambda_tv: 0.0
+  ssim_window: 11
+
+data:
+  train_root: datasets/DIV2K/DIV2K_train_HR
+  val_roots:
+    Set5: datasets/benchmark/Set5/HR
+    Set14: datasets/benchmark/Set14/HR
+    BSD100: datasets/benchmark/BSD100/HR
+    Urban100: datasets/benchmark/Urban100/HR
+    DIV2K: datasets/DIV2K/DIV2K_valid_HR
+  patch_size: 192           # HR training patch (divisible by feature_downscale*scale)
+  batch_size: 16
+  num_workers: 6
+  augment: true
+  repeat: 20
+  cache: false
+  val_max_images: null
+
+train:
+  optimizer: adam
+  lr: 2.0e-4
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+  scheduler: cosine
+  total_iters: 300000
+  eta_min: 1.0e-7
+  amp: true
+  grad_clip: 1.0
+  ema: true
+  ema_decay: 0.999
+  log_interval: 100
+  val_interval: 5000
+  save_interval: 5000
+  val_set_for_best: DIV2K
+
+eval:
+  test_y_channel: true
+  compute_niqe: true

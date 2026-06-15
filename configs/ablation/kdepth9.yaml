@@ -1,0 +1,5 @@
+__base__: ../adn_x2.yaml
+name: ablation_kdepth9
+# Ablation: deep kernel-generation trunk (kernel depth -> risk of over-smoothing).
+model:
+  kernel_depth: 9

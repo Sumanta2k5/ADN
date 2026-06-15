@@ -1,0 +1,6 @@
+__base__: base.yaml
+name: adn_x8
+scale: 8
+data:
+  patch_size: 256
+val_set_for_best: DIV2K

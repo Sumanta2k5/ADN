@@ -1,0 +1,18 @@
+__base__: base.yaml
+# Downscale-for-SR variant: ADN jointly trained with a lightweight EDSR head.
+# Reproduces the "SR" tables (Table IV) where LR is upscaled by a learned SR net
+# instead of plain bicubic. Set scale via --opts scale=4 if desired.
+name: adn_x4_sr
+scale: 4
+model:
+  reconstructor: edsr
+  recon_kwargs:
+    channels: 64
+    num_blocks: 16
+    res_scale: 0.1
+data:
+  patch_size: 256
+loss:
+  lambda_mse: 0.55
+  lambda_ssim: 0.45
+  lambda_guidance: 0.05   # keep LR natural while SR head reconstructs HR
